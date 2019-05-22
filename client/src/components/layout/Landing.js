@@ -29,7 +29,8 @@ const Landing = props => {
 									<div className="row">
 										<div className="col p-4">
 											<p className="text-justify ">
-												MyEU tracks EU Public Affairs news and events, allowing you to :
+												<span className="font-weight-bold text-blue">MyEU</span> tracks EU Public
+												Affairs news and events, allowing you to :
 											</p>
 											<p className="text-justify">
 												<span className="font-weight-bold text-blue">Quickly monitor</span> news
@@ -46,18 +47,15 @@ const Landing = props => {
 													events on the plateform to :
 												</p>
 												<ul>
-													<li className="text-justify">
-														{' '}
+													<li className="text-left">
 														- <span className="font-weight-bold text-blue">Gain</span> more
 														visibility and increase engagement levels.
 													</li>
-													<li className="text-justify">
-														{' '}
+													<li className="text-left">
 														- <span className="font-weight-bold text-blue">Easily</span> manage your
 														events registrations and Q&A.
 													</li>
-													<li className="text-justify">
-														{' '}
+													<li className="text-left">
 														- <span className="font-weight-bold text-blue">Enjoy</span> a quick and
 														easy registration process.
 													</li>

@@ -36,7 +36,7 @@ const About = () => {
 								<p className="text-justify">
 									As a European public affairs professional I became increasingly frustrated with
 									how repetitive and time-consuming monitoring is. I also knew that technology could
-									enhance the monitoring experience. That why I built{' '}
+									enhance the monitoring experience. That's why I built{' '}
 									<span className="font-weight-bold text-blue">MyEU</span> - to help professionals
 									and EU citizens to be easily informed of the latest developments in European
 									public affairs and <span className="font-weight-bold text-blue">save time</span>.
