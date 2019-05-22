@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <g id="default_avatar" transform="translate(-1492 -3)">
+    <rect id="Rectangle_2" data-name="Rectangle 2" width="200" height="200" transform="translate(1492 3)" fill="#dee0e1"/>
+    <circle id="Ellipse_1" data-name="Ellipse 1" cx="34" cy="34" r="34" transform="translate(1558 36)" fill="#b3b6b8"/>
+    <path id="Tracé_1" data-name="Tracé 1" d="M79,0a79,79,0,0,1,79,79c-8.2.008-52.14,0-79,0-25.793,0-61.942.074-79,0A79,79,0,0,1,79,0Z" transform="translate(1513 104)" fill="#b3b6b8"/>
+    <g id="Groupe_8" data-name="Groupe 8" transform="translate(-13.264 -12)">
+      <g id="Groupe_3" data-name="Groupe 3" transform="translate(1628.61 99.372)">
+        <path id="Tracé_4" data-name="Tracé 4" d="M4.916,0A4.916,4.916,0,1,1,0,4.916,4.916,4.916,0,0,1,4.916,0Z" transform="translate(0 0)" fill="none"/>
+        <path id="Tracé_5" data-name="Tracé 5" d="M4.917,1.061A3.856,3.856,0,1,0,8.773,4.917,3.861,3.861,0,0,0,4.917,1.061M4.917,0A4.917,4.917,0,1,1,0,4.917,4.917,4.917,0,0,1,4.917,0Z" transform="translate(0 0)" fill="none" stroke="#fff" stroke-width="2"/>
+      </g>
+    </g>
+    <g id="Groupe_10" data-name="Groupe 10">
+      <g id="Groupe_2" data-name="Groupe 2" transform="translate(1548.736 74)">
+        <g id="Groupe_1" data-name="Groupe 1">
+          <path id="Tracé_2" data-name="Tracé 2" d="M11.642,51.148A11.642,11.642,0,0,1,0,39.506V18.387A11.642,11.642,0,0,1,11.642,6.745H25.807A7.308,7.308,0,0,1,33.092,0h22a7.307,7.307,0,0,1,7.285,6.745H75.513A11.642,11.642,0,0,1,87.154,18.387v21.12A11.642,11.642,0,0,1,75.513,51.148Z" fill="none"/>
+          <path id="Tracé_3" data-name="Tracé 3" d="M75.513,48.237a8.741,8.741,0,0,0,8.731-8.731V18.387a8.741,8.741,0,0,0-8.731-8.731H62.379a2.911,2.911,0,0,1-2.9-2.69A4.411,4.411,0,0,0,55.095,2.91h-22a4.412,4.412,0,0,0-4.383,4.055,2.911,2.911,0,0,1-2.9,2.69H11.642A8.741,8.741,0,0,0,2.91,18.387V39.506a8.741,8.741,0,0,0,8.731,8.731H75.513m0,2.91H11.642A11.642,11.642,0,0,1,0,39.506V18.387A11.642,11.642,0,0,1,11.642,6.745H25.807A7.308,7.308,0,0,1,33.092,0h22a7.307,7.307,0,0,1,7.284,6.745H75.513A11.642,11.642,0,0,1,87.155,18.387V39.506A11.642,11.642,0,0,1,75.513,51.148Z" transform="translate(0 0)" fill="#fff"/>
+        </g>
+        <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(28.121 13.49)" fill="none" stroke="#fff" stroke-width="4">
+          <circle cx="15.456" cy="15.456" r="15.456" stroke="none"/>
+          <circle cx="15.456" cy="15.456" r="13.456" fill="none"/>
+        </g>
+      </g>
+      <g id="Groupe_9" data-name="Groupe 9" transform="translate(0 -2)">
+        <path id="Tracé_10" data-name="Tracé 10" d="M0,0V13" transform="translate(1592.5 98.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+        <path id="Tracé_9" data-name="Tracé 9" d="M0,0H12" transform="translate(1586.5 104.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+</svg>
