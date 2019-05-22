@@ -64,7 +64,7 @@ const sendVerificationEmail = user => {
 
 	const emailToken = jwt.sign({ id: user.id }, process.env.EMAIL_SECRET, { expiresIn: '1d' });
 
-	const emailVerificationUrl = `http://localhost:3000/confirmation/${emailToken}`;
+	const emailVerificationUrl = `http://www.my-eu.eu/confirmation/${emailToken}`;
 
 	const emailHtml = `
 		<!DOCTYPE html>
@@ -143,7 +143,7 @@ const sendEventPublicVerificationEmail = (user, event) => {
 		expiresIn: '1d'
 	});
 
-	const publicEventVerificationUrl = `http://localhost:3000/confirmation/${publicEventToken}`;
+	const publicEventVerificationUrl = `http://www.my-eu.eu/confirmation/${publicEventToken}`;
 
 	const emailHtml = `
 	<!DOCTYPE html>
