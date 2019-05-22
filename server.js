@@ -27,11 +27,16 @@ const server = new ApolloServer({
 	playground: true
 });
 
-app.use(express.static('public'));
 
+
+
+// Server static assets in prod
 if (process.env.NODE_ENV === 'production') {
+	// Set static folder
+	app.use(express.static('client/build'));
+	// Serve html file
 	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 	});
 }
 
