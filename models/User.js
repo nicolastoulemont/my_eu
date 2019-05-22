@@ -24,7 +24,7 @@ const userSchema = new Schema({
 	},
 	acceptedTerms: {
 		type: Boolean,
-		default: false
+		default: true
 	},
 	tokenCount: {
 		type: Number,
