@@ -27,9 +27,6 @@ const server = new ApolloServer({
 	playground: true
 });
 
-
-
-
 // Server static assets in prod
 if (process.env.NODE_ENV === 'production') {
 	// Set static folder
