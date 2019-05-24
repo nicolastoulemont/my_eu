@@ -16,13 +16,16 @@ module.exports = {
 			signS3: async (parent, { filename, filetype }, { user }) => {
 				if (!user) throw new Error('Error : You are not logged in');
 
-				const s3Bucket = process.env.S3BUCKET;
-				const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-				const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+				let s3Bucket;
+				if (process.env.NODE_ENV === 'production') {
+					s3Bucket = process.env.S3BUCKET;
+				}
+
+				if (process.NODE_ENV !== 'production') {
+					s3Bucket = process.env.S3_DEV_BUCKET;
+				}
 
 				const s3 = new aws.S3({
-					// secretAccessKey: AWS_SECRET_ACCESS_KEY,
-					// accessKeyId: AWS_ACCESS_KEY_ID,
 					signatureVersion: 'v4',
 					region: 'eu-west-3'
 				});

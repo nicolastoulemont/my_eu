@@ -78,7 +78,6 @@ const UserNav = () => {
 								className="nav-link"
 								to="#"
 								data-toggle="dropdown"
-								href="#"
 								role="button"
 								aria-haspopup="true"
 								aria-expanded="false"

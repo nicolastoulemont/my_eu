@@ -37,6 +37,12 @@ body {
 	z-index: 2;
 }
 
+.scrollable-menu {
+	height: auto;
+	max-height: 200px;
+	overflow-x: hidden;
+}
+
 img {
 	width: 100%;
 	height: 100%;

@@ -5,7 +5,7 @@ import { Spring } from 'react-spring/renderprops';
 import { Waypoint } from 'react-waypoint';
 import { DateUrlValidation } from '../../commons/DateUrlValidation';
 import CQuery from '../../commons/CustomQueryComponent';
-import FeedSearch from '../../commons/FeedSearch';
+import FeedSearch from '../../commons/SearchFeed/FeedSearch';
 import { useStateValue } from '../../contexts/InitialState';
 import { SEARCH_DAILY_POSTS } from '../../graphql/post/Queries';
 import NewsFeedItem from './feedItems';
@@ -16,11 +16,10 @@ const NewsFeed = ({ match }) => {
 	const [search, setSearch] = useState('');
 	const [sort, setSort] = useState('descending');
 	const [type, setType] = useState(userSearchPref.type);
-	const [tags, setTags] = useState(userSearchPref.tags);
+	const [tags, setTags] = useState([]);
 	const [errors, setErrors] = useState([]);
 
 	const day = match.params.day;
-
 	const displayDay = () => {
 		if (!day.includes('+')) {
 			const date = `News on ${dayjs(day).format('dddd')} `;

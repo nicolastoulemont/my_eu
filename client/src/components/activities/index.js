@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import dayjs from 'dayjs';
-import FeedSearch from '../commons/FeedSearch';
+import FeedSearch from '../commons/SearchFeed/FeedSearch';
 import { DateUrlValidation } from '../commons/DateUrlValidation';
 import { Spring } from 'react-spring/renderprops';
 import { useStateValue } from '../contexts/InitialState';
@@ -18,6 +18,7 @@ const ManageActivities = ({ match }) => {
 	const [{ userSearchPref }] = useStateValue();
 	const [search, setSearch] = useState('');
 	const [sort, setSort] = useState(userSearchPref.sort);
+	const [tags, setTags] = useState([]);
 	const [errors, setErrors] = useState([]);
 
 	const day = match.params.day;
@@ -58,6 +59,8 @@ const ManageActivities = ({ match }) => {
 					setSort={setSort}
 					displayRegistrations={displayRegistrations}
 					setDisplayRegistrations={setDisplayRegistrations}
+					tags={tags}
+					setTags={setTags}
 					errors={errors}
 					setErrors={setErrors}
 				/>

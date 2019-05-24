@@ -5,7 +5,7 @@ import { Spring } from 'react-spring/renderprops';
 import { Waypoint } from 'react-waypoint';
 import { DateUrlValidation } from '../../commons/DateUrlValidation';
 import CQuery from '../../commons/CustomQueryComponent';
-import FeedSearch from '../../commons/FeedSearch';
+import FeedSearch from '../../commons/SearchFeed/FeedSearch';
 import { useStateValue } from '../../contexts/InitialState';
 import { SEARCH_DAILY_EVENTS } from '../../graphql/event/Queries';
 import EventFeedItem from './feedItems';
