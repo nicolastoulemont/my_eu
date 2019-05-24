@@ -5,8 +5,8 @@ const buildComment = async (args, CommentItem) => {
 			event_ID: args.event_ID,
 			poll_ID: args.poll_ID,
 			text: args.text,
-			createdAt: args.createdAt,
-			updatedAt: args.updatedAt
+			createdAt: new Date().toISOString(),
+			updatedAt: new Date().toISOString()
 		}).save();
 
 		return {

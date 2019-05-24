@@ -15,7 +15,7 @@ module.exports = {
 				return dayjs(value); // value from the client
 			},
 			serialize(value) {
-				return dayjs(value).format('YYYY-MM-DDTHH:mm:ss');
+				return dayjs(value).format('YYYY-MM-DDTHH:mm:ssZ');
 				// value sent to the client
 			},
 			parseLiteral(ast) {

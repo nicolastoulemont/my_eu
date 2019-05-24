@@ -19,9 +19,7 @@ const EventCommentFeedInput = () => {
 				variables: {
 					user_ID: user.id,
 					event_ID: event.id,
-					text,
-					createdAt: new Date().toISOString(),
-					updatedAt: new Date().toISOString()
+					text
 				}
 			});
 			const { ok, errors } = response.data.addComment;

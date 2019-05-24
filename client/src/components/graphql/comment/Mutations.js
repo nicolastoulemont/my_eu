@@ -1,22 +1,8 @@
 import gql from 'graphql-tag';
 
 export const ADD_COMMENT = gql`
-	mutation AddComment(
-		$user_ID: String!
-		$event_ID: String
-		$poll_ID: String
-		$text: String!
-		$createdAt: Date!
-		$updatedAt: Date!
-	) {
-		addComment(
-			user_ID: $user_ID
-			event_ID: $event_ID
-			poll_ID: $poll_ID
-			text: $text
-			createdAt: $createdAt
-			updatedAt: $updatedAt
-		) {
+	mutation AddComment($user_ID: String!, $event_ID: String, $poll_ID: String, $text: String!) {
+		addComment(user_ID: $user_ID, event_ID: $event_ID, poll_ID: $poll_ID, text: $text) {
 			statusCode
 			ok
 			errors {
