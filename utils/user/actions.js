@@ -1,6 +1,11 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { createTokens, sendVerificationEmail, sendEventPublicVerificationEmail } = require('./auth');
+const {
+	createTokens,
+	sendVerificationEmail,
+	sendEventPublicVerificationEmail,
+	sendForgotPwdEmail
+} = require('./auth');
 
 const registerUser = async (args, User) => {
 	try {
@@ -148,6 +153,19 @@ const userLogin = async user => {
 	}
 };
 
+const handleForgotPwdEmail = async (args, User) => {
+	try {
+		const user = await User.findOne({ email: args.email });
+		sendForgotPwdEmail(user, args.email);
+		return {
+			statusCode: 201,
+			ok: true
+		};
+	} catch (err) {
+		return { statusCode: 500, ok: false, errors: [{ path: err.path, message: err.message }] };
+	}
+};
+
 const changeEmail = async (args, targetUser, User) => {
 	const updateUser = {
 		password: args.email,
@@ -171,6 +189,22 @@ const changePassword = async (args, targetUser, User) => {
 	};
 	try {
 		const newUserInfo = await User.findByIdAndUpdate(targetUser._id, updateUser, {
+			new: true
+		});
+		return { statusCode: 201, ok: true, body: newUserInfo };
+	} catch (err) {
+		return { statusCode: 500, ok: false, errors: [{ path: err.path, message: err.message }] };
+	}
+};
+
+const resetPassword = async (args, User) => {
+	const hashedPwd = await bcrypt.hash(args.newPassword, 12);
+	const updateUser = {
+		password: hashedPwd,
+		updatedAt: new Date()
+	};
+	try {
+		const newUserInfo = await User.findByIdAndUpdate(args.user_ID, updateUser, {
 			new: true
 		});
 		return { statusCode: 201, ok: true, body: newUserInfo };
@@ -264,7 +298,9 @@ module.exports = {
 	publicEventRegistration,
 	registerAndLogin,
 	userLogin,
+	handleForgotPwdEmail,
 	changeEmail,
 	changePassword,
+	resetPassword,
 	deleteAccount
 };

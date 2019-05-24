@@ -6,8 +6,10 @@ const {
 	publicEventRegistration,
 	registerAndLogin,
 	userLogin,
+	handleForgotPwdEmail,
 	changeEmail,
 	changePassword,
+	resetPassword,
 	deleteAccount
 } = require('../../utils/user/actions');
 // Validation
@@ -15,6 +17,7 @@ const {
 	validateRegInput,
 	validateLoginInput,
 	validatePublicEventRegistrationInput,
+	validateFindUserForgotPwdInput,
 	validateChangeEmailInput,
 	validateChangePasswordInput,
 	validateDeleteAccountInput
@@ -84,8 +87,11 @@ module.exports = {
 			): AuthResponse!
 			registerAndLogin(email: String!, password: String!): UserResponse!
 			login(email: String!, password: String!): AuthResponse!
+			validateUserForgotPassword(email: String!): UserResponse!
+			sendForgotPwdEmail(email: String!): UserResponse!
 			changeEmail(user_ID: ID!, email: String!, password: String!): UserResponse!
 			changePassword(user_ID: ID!, currentPassword: String!, newPassword: String!): UserResponse!
+			resetPassword(user_ID: ID!, newPassword: String!): UserResponse!
 			deleteAccount(user_ID: ID!, email: String!, password: String!): UserResponse!
 		}
 	`,
@@ -161,6 +167,19 @@ module.exports = {
 				if (!isValid) return { statusCode: 400, ok: false, errors, body: user };
 				return await userLogin(user);
 			},
+			validateUserForgotPassword: async (parent, args) => {
+				const { errors, isValid, user } = await validateFindUserForgotPwdInput(args);
+				if (!isValid) return { statusCode: 400, ok: false, errors, body: user };
+				if (isValid)
+					return {
+						statusCode: 200,
+						ok: true,
+						body: user
+					};
+			},
+			sendForgotPwdEmail: async (parent, args, { models: { User } }) => {
+				return await handleForgotPwdEmail(args, User);
+			},
 			changeEmail: async (parent, args, { user, models: { User } }) => {
 				if (!user) throw new AuthenticationError('Please login to get the requested response');
 				if (user.id !== args.user_ID)
@@ -176,6 +195,9 @@ module.exports = {
 				const { errors, isValid, targetUser } = await validateChangePasswordInput(args);
 				if (!isValid) return { statusCode: 400, ok: false, errors };
 				return await changePassword(args, targetUser, User);
+			},
+			resetPassword: async (parent, args, { models: { User } }) => {
+				return await resetPassword(args, User);
 			},
 			deleteAccount: async (parent, args, { user, models }) => {
 				if (!user) throw new AuthenticationError('Please login to get the requested response');

@@ -196,17 +196,101 @@ const sendEventPublicVerificationEmail = (user, event) => {
 	
 	`;
 
-	transporter.sendMail({
-		from: 'MyEU Contact <contact@my-eu.eu>',
-		to: user.email,
-		subject: `Confirmation of your registration to ${event.name}`,
-		html: emailHtml
+	transporter
+		.sendMail({
+			from: 'MyEU Contact <contact@my-eu.eu>',
+			to: user.email,
+			subject: `Confirmation of your registration to ${event.name}`,
+			html: emailHtml
+		})
+		.catch(err => console.log(err.message));
+};
+
+const sendForgotPwdEmail = (user, email) => {
+	const transporter = nodemailer.createTransport({
+		host: 'smtp.privateemail.com',
+		port: 465,
+		secure: true,
+		auth: {
+			user: process.env.EMAIL_SENDER2.toString(),
+			pass: process.env.EMAIL_PWD2.toString()
+		},
+		tls: { rejectUnauthorized: false }
 	});
+
+	const resetPwdEmailToken = jwt.sign({ id: user.id }, process.env.EMAIL_SECRET, {
+		expiresIn: '1h'
+	});
+	let resetPwdUrl;
+	if (process.env.NODE_ENV === 'production') {
+		resetPwdUrl = `https://www.my-eu.eu/reset_password/${resetPwdEmailToken}`;
+	} else {
+		resetPwdUrl = `http://localhost:3000/reset_password/${resetPwdEmailToken}`;
+	}
+
+	const emailHtml = `
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<style>
+				body {
+					font-size: 1rem;
+					font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					padding: 10px;
+				}
+	
+				h3 {
+					font-weight: bold;
+					font-size: 1.75rem;
+					color: #4f96d5;
+					margin: 1rem;
+				}
+				h4 {
+					font-weight: bold;
+					font-size: 1.5rem;
+					color: rgb(99, 95, 95);
+					margin: 1rem;
+				}
+				p {
+					margin: 1rem;
+					font-weight: bold;
+					color: rgb(99, 95, 95);
+				}
+	
+				a {
+					text-decoration: none;
+					font-weight: bold;
+					color: #4f96d5;
+				}
+			</style>
+		</head>
+		<body>
+			<h3>MyEU</h3>
+			<h4>Request for password reset</h4>
+			<p>
+				Please follow this link to reset your password :
+				<a href="${resetPwdUrl}">Reset your Password</a>
+			</p>
+			<p>The MyEU Team</p>
+		</body>
+	</html>
+	
+	`;
+
+	transporter
+		.sendMail({
+			from: 'MyEU Support <support@my-eu.eu>',
+			to: email,
+			subject: 'Request for password reset',
+			html: emailHtml
+		})
+		.catch(err => console.log(err.message));
 };
 
 module.exports = {
 	AuthUser,
 	createTokens,
 	sendVerificationEmail,
-	sendEventPublicVerificationEmail
+	sendEventPublicVerificationEmail,
+	sendForgotPwdEmail
 };

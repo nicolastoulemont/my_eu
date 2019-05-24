@@ -148,12 +148,12 @@ const TermsModal = () => {
 							data processing, files and freedoms. In accordance with articles 39 and 40 of the law
 							dated 6 January 1978, the User has the right to access, rectify, delete and oppose his
 							personal data. The User exercises this right via:
-							<ul>
-								<li className="text-left">- His personal space on the site;</li>
-								<li className="text-left">- A contact form;</li>
-								<li className="text-left">- By email to support@my-eu.eu</li>
-							</ul>
 						</p>
+						<ul>
+							<li className="text-left">- His personal space on the site;</li>
+							<li className="text-left">- A contact form;</li>
+							<li className="text-left">- By email to support@my-eu.eu</li>
+						</ul>
 						<h5 className="text-left">ARTICLE 8: Hypertext links</h5>
 						<p className="text-left">
 							The domains to which the hypertext links on the site lead do not engage the

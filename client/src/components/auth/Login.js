@@ -69,6 +69,14 @@ const Login = ({ history, client }) => {
 								onChange={onChange}
 								error={findErrorInErrorsArr(errors, 'password')}
 							/>
+							<p className="text-left">
+								<small>
+									Forgot your password ? Click{' '}
+									<Link to="/forgot_password" className="font-weight-bold text-blue">
+										here
+									</Link>
+								</small>
+							</p>
 							{showVerifyEmail ? (
 								<div className="text-left">
 									<small>

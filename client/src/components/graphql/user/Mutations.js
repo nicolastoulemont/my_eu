@@ -100,6 +100,35 @@ export const PUBLIC_EVENT_REGISTRATION = gql`
 	}
 `;
 
+export const VALIDATE_USER_FORGOT_PWD = gql`
+	mutation ValidateUserForgotPassword($email: String!) {
+		validateUserForgotPassword(email: $email) {
+			statusCode
+			ok
+			errors {
+				path
+				message
+			}
+			body {
+				email
+			}
+		}
+	}
+`;
+
+export const SEND_FORGOT_PWD_EMAIL = gql`
+	mutation SendForgotPwdEmail($email: String!) {
+		sendForgotPwdEmail(email: $email) {
+			statusCode
+			ok
+			errors {
+				path
+				message
+			}
+		}
+	}
+`;
+
 export const CHANGE_USER_EMAIL = gql`
 	mutation ChangeEmail($user_ID: ID!, $email: String!, $password: String!) {
 		changeEmail(user_ID: $user_ID, email: $email, password: $password) {
@@ -123,6 +152,22 @@ export const CHANGE_USER_PASSWORD = gql`
 			currentPassword: $currentPassword
 			newPassword: $newPassword
 		) {
+			statusCode
+			ok
+			errors {
+				path
+				message
+			}
+			body {
+				id
+			}
+		}
+	}
+`;
+
+export const RESET_USER_PASSWORD = gql`
+	mutation ResetPassword($user_ID: ID!, $newPassword: String!) {
+		resetPassword(user_ID: $user_ID, newPassword: $newPassword) {
 			statusCode
 			ok
 			errors {

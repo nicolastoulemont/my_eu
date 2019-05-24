@@ -11,6 +11,8 @@ import Home from './components/home';
 import Landing from './components/layout/Landing';
 import About from './components/layout/About';
 import ConfirmEmail from './components/auth/ConfirmEmail';
+import ForgotPassword from './components/auth/ForgotPassword';
+import ResetPassword from './components/auth/ResetPassword';
 import PublicEvent from './components/events/publicEvent';
 
 const client = new ApolloClient({
@@ -39,6 +41,8 @@ const App = () => (
 							<Route exact path="/" component={Landing} />
 							<Route exact path="/about" component={About} />
 							<PrivateRoute path="/home" component={Home} />
+							<Route path="/forgot_password" component={ForgotPassword} />
+							<Route path="/reset_password/:resetPwdEmailToken" component={ResetPassword} />
 							<Route path="/confirmation/:emailToken" component={ConfirmEmail} />
 							<Route path="/event-public-link/:id" component={PublicEvent} />
 							<Route component={RouteError} />

@@ -19,7 +19,7 @@ const About = () => {
 						<div className="row bg-white px-4 py-2">
 							<div className="d-block px-4">
 								<h5>
-									Who <i class="fas fa-male ml-2 text-blue" />
+									Who <i className="fas fa-male ml-2 text-blue" />
 								</h5>
 								<p className="text-justify">
 									I am Nicolas, the founder of MyEU. I am passionate about{' '}
@@ -31,7 +31,7 @@ const About = () => {
 							</div>
 							<div className="d-block px-4">
 								<h5>
-									Why <i class="fas fa-lightbulb ml-2 text-blue" />
+									Why <i className="fas fa-lightbulb ml-2 text-blue" />
 								</h5>
 								<p className="text-justify">
 									As a European public affairs professional I became increasingly frustrated with
@@ -44,7 +44,7 @@ const About = () => {
 							</div>
 							<div className="d-block px-4">
 								<h5>
-									How <i class="fas fa-cogs  ml-2 text-blue" />
+									How <i className="fas fa-cogs  ml-2 text-blue" />
 								</h5>
 								<p className="text-justify">
 									MyEU monitor thousands of carefully selected institutional and stakeholders

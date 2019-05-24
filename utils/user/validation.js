@@ -142,6 +142,24 @@ const validatePublicEventRegistrationInput = async data => {
 	};
 };
 
+const validateFindUserForgotPwdInput = async data => {
+	let errors = [];
+	data.email = !isEmpty(data.email) ? data.email : '';
+
+	if (!Validator.isEmail(data.email)) errors.push({ path: 'email', message: 'Invalid Email' });
+
+	const user = await User.findOne({ email: data.email });
+	if (!user) {
+		errors.push({ path: 'email', message: 'Wrong email' });
+	}
+
+	return {
+		errors,
+		isValid: isEmpty(errors),
+		user
+	};
+};
+
 const validateChangeEmailInput = async data => {
 	let errors = [];
 
@@ -226,6 +244,7 @@ module.exports = {
 	validateRegInput,
 	validateLoginInput,
 	validatePublicEventRegistrationInput,
+	validateFindUserForgotPwdInput,
 	validateChangeEmailInput,
 	validateChangePasswordInput,
 	validateDeleteAccountInput
