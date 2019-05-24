@@ -1,6 +1,5 @@
-import React, { useContext, Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../contexts';
 import { useStateValue } from '../../contexts/InitialState';
 import { tagsList } from '../TagsList';
 import classNames from 'classnames';
@@ -34,12 +33,30 @@ const FeedSearch = ({
 
 	const addTag = (e, tag) => {
 		e.preventDefault();
+		dispatch({
+			type: 'SET_TAGS',
+			newTags: {
+				sort: userSearchPref.sort,
+				type: userSearchPref.type,
+				price: userSearchPref.price,
+				tags: [...tags, tag]
+			}
+		});
 		setTags([...tags, tag]);
 		setTagsPool(tagsPool.filter(item => item !== tag));
 	};
 
 	const deleteTag = (e, tag) => {
 		e.preventDefault();
+		dispatch({
+			type: 'SET_TAGS',
+			newTags: {
+				sort: userSearchPref.sort,
+				type: userSearchPref.type,
+				price: userSearchPref.price,
+				tags: tags.filter(item => item !== tag)
+			}
+		});
 		setTagsPool([tag, ...tagsPool]);
 		setTags(tags.filter(item => item !== tag));
 	};
@@ -317,7 +334,7 @@ const FeedSearch = ({
 								<span className={classNames('m-0', { 'text-blue': !displayRegistrations })}>
 									<small>
 										<i className="far fa-calendar mx-2 mt-2" />
-										Show your registrations
+										Show your events
 									</small>
 								</span>
 							</Link>
@@ -334,7 +351,7 @@ const FeedSearch = ({
 								<span className={classNames('m-0', { 'text-blue': displayRegistrations })}>
 									<small>
 										<i className="fas fa-bookmark mx-2 mt-2" />
-										Show your events
+										Show your registrations
 									</small>
 								</span>
 							</Link>

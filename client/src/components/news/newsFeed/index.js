@@ -16,7 +16,7 @@ const NewsFeed = ({ match }) => {
 	const [search, setSearch] = useState('');
 	const [sort, setSort] = useState('descending');
 	const [type, setType] = useState(userSearchPref.type);
-	const [tags, setTags] = useState([]);
+	const [tags, setTags] = useState(userSearchPref.tags);
 	const [errors, setErrors] = useState([]);
 
 	const day = match.params.day;
@@ -34,6 +34,8 @@ const NewsFeed = ({ match }) => {
 			return days;
 		}
 	};
+
+	console.log(tags);
 
 	if (!DateUrlValidation(day))
 		return <Redirect to={`/home/events/${dayjs().format('YYYY-MM-DD')}`} />;
