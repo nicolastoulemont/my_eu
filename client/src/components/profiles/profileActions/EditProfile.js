@@ -56,9 +56,11 @@ const EditProfile = ({ match, history }) => {
 			return null;
 		}
 
-		if (picture !== user.profile[0].picture_URL) {
+		if (picture && picture !== user.profile[0].picture_URL) {
 			await updateProfileWithNewPicture(updateProfile, signS3);
-		} else if (picture === user.profile[0].picture_URL) {
+		} else if (!picture) {
+			await updateProfileWithOutPicture(updateProfile);
+		} else if (picture && picture === user.profile[0].picture_URL) {
 			await updateProfileWithOutNewPicture(updateProfile);
 		}
 	};
@@ -102,6 +104,29 @@ const EditProfile = ({ match, history }) => {
 			}
 		};
 		await axios.put(signedRequest, picture, options).catch(err => console.log(err));
+	};
+
+	const updateProfileWithOutPicture = async updateProfile => {
+		const res = await updateProfile({
+			variables: {
+				_id: user.profile[0].id,
+				user_ID: user.id,
+				name,
+				position,
+				organisation,
+				bio,
+				twitter_URL,
+				linkedin_URL,
+				website_URL,
+				hideSocial
+			}
+		});
+		if (res.data.updateProfile.statusCode === 201) {
+			history.push(`/home/profile/${user.id}`);
+		} else {
+			setErrors(res.data.updateProfile.errors);
+			return null;
+		}
 	};
 
 	const updateProfileWithOutNewPicture = async updateProfile => {
