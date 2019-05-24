@@ -35,8 +35,6 @@ const NewsFeed = ({ match }) => {
 		}
 	};
 
-	console.log(tags);
-
 	if (!DateUrlValidation(day))
 		return <Redirect to={`/home/events/${dayjs().format('YYYY-MM-DD')}`} />;
 	return (
