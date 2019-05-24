@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { withApollo } from 'react-apollo';
 import dayjs from 'dayjs';
 import DefaultAvatar from '../../img/avatar_default.svg';
 import { UserContext } from '../contexts/index';
 import { useStateValue } from '../contexts/InitialState';
 
-const UserNav = () => {
+const UserNav = ({ client }) => {
 	const user = useContext(UserContext);
 	const [
 		{
@@ -14,6 +15,7 @@ const UserNav = () => {
 	] = useStateValue();
 
 	const logOut = async e => {
+		client.resetStore();
 		localStorage.removeItem('access-token');
 		localStorage.removeItem('refresh-token');
 	};
@@ -167,4 +169,4 @@ const UserNav = () => {
 	);
 };
 
-export default UserNav;
+export default withApollo(UserNav);

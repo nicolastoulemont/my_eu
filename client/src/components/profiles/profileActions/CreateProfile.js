@@ -9,6 +9,7 @@ import { Mutation } from 'react-apollo';
 import { CREATE_PROFILE } from '../../graphql/profile/Mutations';
 import { SIGN_S3 } from '../../graphql/s3/Mutation';
 import { LOGGED_USER } from '../../graphql/user/Queries';
+import { GET_USER_FULL_PROFILE } from '../../graphql/profile/Queries';
 import { UserContext } from '../../contexts';
 import { findErrorInErrorsArr, frontEndProfileInputValidation } from '../../commons/ErrorsHandling';
 
@@ -32,7 +33,6 @@ const CreateProfile = ({
 	const [errors, setErrors] = useState([]);
 
 	if (user.id !== id) return <Redirect to="/error" />;
-
 	const onChange = e => {
 		if (errors) setErrors(errors.filter(error => error.path !== e.target.name));
 		if (e.target.name === 'name') setName(e.target.value);
@@ -43,7 +43,6 @@ const CreateProfile = ({
 		if (e.target.name === 'linkedin_URL') setLinkedin_URL(e.target.value);
 		if (e.target.name === 'website_URL') setWebsite_URL(e.target.value);
 	};
-
 	const createProfile = async (e, addProfile, signS3) => {
 		e.preventDefault();
 		const err = frontEndProfileInputValidation(
@@ -91,7 +90,7 @@ const CreateProfile = ({
 		});
 
 		if (res.data.addProfile.statusCode === 201) {
-			setTimeout(() => history.push(`/home/profile/${user.id}`), 300);
+			setTimeout(() => history.push(`/home/profile/${user.id}`), 50);
 		} else {
 			setErrors(res.data.addProfile.errors);
 			return null;
@@ -123,7 +122,7 @@ const CreateProfile = ({
 		});
 
 		if (res.data.addProfile.statusCode === 201) {
-			setTimeout(() => history.push(`/home/profile/${user.id}`), 300);
+			setTimeout(() => history.push(`/home/profile/${user.id}`), 50);
 		} else {
 			setErrors(res.data.addProfile.errors);
 			return null;
@@ -137,7 +136,10 @@ const CreateProfile = ({
 					<Mutation
 						mutation={CREATE_PROFILE}
 						refetchQueries={() => {
-							return [{ query: LOGGED_USER, fetchPolicy: 'network-only' }];
+							return [
+								{ query: GET_USER_FULL_PROFILE, variables: { user_ID: id } },
+								{ query: LOGGED_USER }
+							];
 						}}
 					>
 						{(addProfile, e) => (

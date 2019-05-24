@@ -28,9 +28,8 @@ const Home = props => {
 	return (
 		<Fragment>
 			<StateProvider initialState={InitialState} reducer={Reducer}>
-				<CQuery query={LOGGED_USER} fetchPolicy="network-only">
+				<CQuery query={LOGGED_USER}>
 					{({ data }) => {
-						console.log(data);
 						handleNewTokens(data);
 						return (
 							<UserContext.Provider value={data.currentUser.body}>

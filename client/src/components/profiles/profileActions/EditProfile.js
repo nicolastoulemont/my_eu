@@ -122,7 +122,7 @@ const EditProfile = ({ match, history }) => {
 			}
 		});
 		if (res.data.updateProfile.statusCode === 201) {
-			setTimeout(() => history.push(`/home/profile/${user.id}`), 300);
+			setTimeout(() => history.push(`/home/profile/${user.id}`), 50);
 		} else {
 			setErrors(res.data.updateProfile.errors);
 			return null;
@@ -146,7 +146,7 @@ const EditProfile = ({ match, history }) => {
 			}
 		});
 		if (res.data.updateProfile.statusCode === 201) {
-			setTimeout(() => history.push(`/home/profile/${user.id}`), 300);
+			setTimeout(() => history.push(`/home/profile/${user.id}`), 50);
 		} else {
 			setErrors(res.data.updateProfile.errors);
 			return null;
@@ -165,6 +165,7 @@ const EditProfile = ({ match, history }) => {
 								{ query: GET_USER_FULL_PROFILE, variables: { user_ID: user.id } }
 							];
 						}}
+						awaitRefetchQueries={true}
 					>
 						{(updateProfile, e) => (
 							<form onSubmit={e => editProfile(e, updateProfile, signS3)}>
