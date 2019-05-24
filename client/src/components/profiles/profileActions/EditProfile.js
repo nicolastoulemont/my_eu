@@ -90,7 +90,7 @@ const EditProfile = ({ match, history }) => {
 			}
 		});
 		if (res.data.updateProfile.statusCode === 201) {
-			history.push(`/home/profile/${user.id}`);
+			setTimeout(() => history.push(`/home/profile/${user.id}`), 300);
 		} else {
 			setErrors(res.data.updateProfile.errors);
 			return null;
@@ -122,7 +122,7 @@ const EditProfile = ({ match, history }) => {
 			}
 		});
 		if (res.data.updateProfile.statusCode === 201) {
-			history.push(`/home/profile/${user.id}`);
+			setTimeout(() => history.push(`/home/profile/${user.id}`), 300);
 		} else {
 			setErrors(res.data.updateProfile.errors);
 			return null;
@@ -146,7 +146,7 @@ const EditProfile = ({ match, history }) => {
 			}
 		});
 		if (res.data.updateProfile.statusCode === 201) {
-			history.push(`/home/profile/${user.id}`);
+			setTimeout(() => history.push(`/home/profile/${user.id}`), 300);
 		} else {
 			setErrors(res.data.updateProfile.errors);
 			return null;
@@ -214,7 +214,6 @@ const EditProfile = ({ match, history }) => {
 										labelText="Organisation"
 										value={organisation}
 										onChange={onChange}
-										optional={true}
 										error={findErrorInErrorsArr(errors, 'organisation')}
 										max={70}
 									/>

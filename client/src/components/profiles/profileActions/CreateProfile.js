@@ -91,7 +91,7 @@ const CreateProfile = ({
 		});
 
 		if (res.data.addProfile.statusCode === 201) {
-			history.push(`/home/profile/${user.id}`);
+			setTimeout(() => history.push(`/home/profile/${user.id}`), 300);
 		} else {
 			setErrors(res.data.addProfile.errors);
 			return null;
@@ -123,7 +123,7 @@ const CreateProfile = ({
 		});
 
 		if (res.data.addProfile.statusCode === 201) {
-			history.push(`/home/profile/${user.id}`);
+			setTimeout(() => history.push(`/home/profile/${user.id}`), 300);
 		} else {
 			setErrors(res.data.addProfile.errors);
 			return null;
@@ -137,7 +137,7 @@ const CreateProfile = ({
 					<Mutation
 						mutation={CREATE_PROFILE}
 						refetchQueries={() => {
-							return [{ query: LOGGED_USER }];
+							return [{ query: LOGGED_USER, fetchPolicy: 'network-only' }];
 						}}
 					>
 						{(addProfile, e) => (
@@ -188,7 +188,6 @@ const CreateProfile = ({
 										labelText="Organisation"
 										value={organisation}
 										onChange={onChange}
-										optional={true}
 										error={findErrorInErrorsArr(errors, 'organisation')}
 										max={70}
 									/>

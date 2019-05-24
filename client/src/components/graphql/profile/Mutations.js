@@ -33,6 +33,9 @@ export const CREATE_PROFILE = gql`
 			}
 			body {
 				id
+				name
+				position
+				organisation
 			}
 		}
 	}
@@ -73,6 +76,9 @@ export const UPDATE_PROFILE = gql`
 			}
 			body {
 				id
+				name
+				position
+				organisation
 			}
 		}
 	}
