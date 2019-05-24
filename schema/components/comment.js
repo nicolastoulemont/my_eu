@@ -64,6 +64,8 @@ module.exports = {
 				comment_ID: String
 				poll_ID: String
 				text: String!
+				createdAt: Date!
+				updatedAt: Date!
 			): CommentResponse!
 			updateComment(_id: ID!, text: String): CommentResponse!
 			pinComment(_id: ID!, user_ID: ID!, event_ID: ID!, pinned: Boolean!): CommentResponse!

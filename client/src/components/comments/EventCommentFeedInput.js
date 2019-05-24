@@ -16,7 +16,13 @@ const EventCommentFeedInput = () => {
 		if (e.type === 'keydown' && e.keyCode === 13) {
 			e.preventDefault();
 			const response = await addComment({
-				variables: { user_ID: user.id, event_ID: event.id, text }
+				variables: {
+					user_ID: user.id,
+					event_ID: event.id,
+					text,
+					createdAt: new Date().toISOString(),
+					updatedAt: new Date().toISOString()
+				}
 			});
 			const { ok, errors } = response.data.addComment;
 			if (!ok) setErrors(errors);
