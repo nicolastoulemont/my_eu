@@ -12,7 +12,6 @@ export const CREATE_PROFILE = gql`
 		$linkedin_URL: String
 		$website_URL: String
 		$picture_URL: String
-		$tags: [String]
 	) {
 		addProfile(
 			user_ID: $user_ID
@@ -25,7 +24,6 @@ export const CREATE_PROFILE = gql`
 			linkedin_URL: $linkedin_URL
 			website_URL: $website_URL
 			picture_URL: $picture_URL
-			tags: $tags
 		) {
 			statusCode
 			ok
@@ -53,7 +51,6 @@ export const UPDATE_PROFILE = gql`
 		$linkedin_URL: String
 		$website_URL: String
 		$picture_URL: String
-		$tags: [String]
 	) {
 		updateProfile(
 			_id: $_id
@@ -67,7 +64,6 @@ export const UPDATE_PROFILE = gql`
 			linkedin_URL: $linkedin_URL
 			website_URL: $website_URL
 			picture_URL: $picture_URL
-			tags: $tags
 		) {
 			statusCode
 			ok

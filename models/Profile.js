@@ -37,9 +37,6 @@ const profileSchema = new Schema({
 	updatedAt: {
 		type: Date,
 		default: Date.now()
-	},
-	tags: {
-		type: [String]
 	}
 });
 

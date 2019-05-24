@@ -26,7 +26,6 @@ export const LOGGED_USER = gql`
 					linkedin_URL
 					website_URL
 					picture_URL
-					tags
 				}
 			}
 		}

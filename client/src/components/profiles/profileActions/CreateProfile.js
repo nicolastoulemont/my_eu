@@ -3,10 +3,8 @@ import { Redirect } from 'react-router-dom';
 import PlaceHolderBanner from '../../../img/placeholder_event_banner.svg';
 import axios from 'axios';
 import { formatFileName } from '../../commons/fileManagers';
-import { TagsChooser } from '../../commons/InputComponents';
 import ImgHandler from '../../commons/ImgHandler';
 import { InputField, TextAreaField } from '../../commons/InputComponents';
-import { tagsList } from '../../commons/TagsList';
 import { Mutation } from 'react-apollo';
 import { CREATE_PROFILE } from '../../graphql/profile/Mutations';
 import { SIGN_S3 } from '../../graphql/s3/Mutation';
@@ -30,20 +28,8 @@ const CreateProfile = ({
 	const [linkedin_URL, setLinkedin_URL] = useState('');
 	const [website_URL, setWebsite_URL] = useState('');
 	const [hideSocial, setHideSocial] = useState(false);
-	const [userTopics, setUserTopics] = useState([]);
-	const [topicsPool, setTopicsPool] = useState(tagsList);
 
 	const [errors, setErrors] = useState([]);
-
-	const addTopic = topic => {
-		setUserTopics([...userTopics, topic]);
-		setTopicsPool(topicsPool.filter(item => item !== topic));
-	};
-
-	const deleteTopic = topic => {
-		setTopicsPool([...topicsPool, topic]);
-		setUserTopics(userTopics.filter(item => item !== topic));
-	};
 
 	if (user.id !== id) return <Redirect to="/error" />;
 
@@ -100,8 +86,7 @@ const CreateProfile = ({
 				linkedin_URL,
 				website_URL,
 				picture_URL: url,
-				hideSocial,
-				tags: userTopics
+				hideSocial
 			}
 		});
 
@@ -133,8 +118,7 @@ const CreateProfile = ({
 				twitter_URL,
 				linkedin_URL,
 				website_URL,
-				hideSocial,
-				tags: userTopics
+				hideSocial
 			}
 		});
 
@@ -273,18 +257,7 @@ const CreateProfile = ({
 										</label>
 									</div>
 
-									<div className="py-2 text-left">
-										<TagsChooser
-											topicsPool={topicsPool}
-											addTopic={addTopic}
-											userTopics={userTopics}
-											deleteTopic={deleteTopic}
-											main="Choose the topics your are interested in"
-											secondary="Will allow you to quickly find the informations you are interested in"
-										/>
-
-										<input type="submit" className="btn bg-blue text-white btn-block mt-4 mb-2" />
-									</div>
+									<input type="submit" className="btn bg-blue text-white btn-block mt-4 mb-2" />
 								</div>
 							</form>
 						)}

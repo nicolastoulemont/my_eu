@@ -12,8 +12,7 @@ const buildProfile = async (args, Profile) => {
 			website_URL: args.website_URL,
 			picture_URL: args.picture_URL,
 			createdAt: new Date(),
-			updatedAt: new Date(),
-			tags: args.tags
+			updatedAt: new Date()
 		}).save();
 
 		return {
@@ -46,7 +45,6 @@ const updateProfile = async (args, Profile) => {
 		if (args.linkedin_URL) updateProfile.linkedin_URL = args.linkedin_URL;
 		if (args.website_URL) updateProfile.website_URL = args.website_URL;
 		if (args.picture_URL) updateProfile.picture_URL = args.picture_URL;
-		if (args.tags) updateProfile.tags = args.tags;
 		updateProfile.updatedAt = new Date();
 
 		const newProfile = await Profile.findOneAndUpdate({ _id: args._id }, updateProfile, {

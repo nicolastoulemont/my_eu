@@ -21,7 +21,6 @@ export const GET_USER_FULL_PROFILE = gql`
 				linkedin_URL
 				website_URL
 				picture_URL
-				tags
 			}
 		}
 	}

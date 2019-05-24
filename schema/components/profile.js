@@ -25,7 +25,6 @@ module.exports = {
 			website_URL: String
 			createdAt: Date
 			updatedAt: Date
-			tags: [String]
 			creator: User
 		}
 
@@ -62,7 +61,6 @@ module.exports = {
 				linkedin_URL: String
 				website_URL: String
 				picture_URL: String
-				tags: [String]
 			): ProfileResponse!
 			updateProfile(
 				_id: ID!
@@ -76,7 +74,6 @@ module.exports = {
 				linkedin_URL: String
 				website_URL: String
 				picture_URL: String
-				tags: [String]
 			): ProfileResponse!
 			deleteProfile(_id: ID!, user_ID: String!): ProfileResponse
 		}

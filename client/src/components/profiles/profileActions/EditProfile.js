@@ -6,8 +6,6 @@ import { formatFileName } from '../../commons/fileManagers';
 import PlaceHolderBanner from '../../../img/placeholder_event_banner.svg';
 import { InputField, TextAreaField } from '../../commons/InputComponents';
 import ImgHandler from '../../commons/ImgHandler';
-import { TagsChooser } from '../../commons/InputComponents';
-import { tagsList } from '../../commons/TagsList';
 import { UserContext } from '../../contexts';
 import { UPDATE_PROFILE } from '../../graphql/profile/Mutations';
 import { SIGN_S3 } from '../../graphql/s3/Mutation';
@@ -26,24 +24,10 @@ const EditProfile = ({ match, history }) => {
 	const [linkedin_URL, setLinkedin_URL] = useState(user.profile[0].linkedin_URL || '');
 	const [website_URL, setWebsite_URL] = useState(user.profile[0].website_URL || '');
 	const [hideSocial, setHideSocial] = useState(user.profile[0].hideSocial);
-	const [userTopics, setUserTopics] = useState(user.profile[0].tags);
-	const [topicsPool, setTopicsPool] = useState(
-		tagsList.filter(tag => !user.profile[0].tags.includes(tag))
-	);
 
 	const [errors, setErrors] = useState([]);
 
 	if (user.id !== match.params.id) return <Redirect to="/error" />;
-
-	const addTopic = topic => {
-		setUserTopics([...userTopics, topic]);
-		setTopicsPool(topicsPool.filter(item => item !== topic));
-	};
-
-	const deleteTopic = topic => {
-		setTopicsPool([...topicsPool, topic]);
-		setUserTopics(userTopics.filter(item => item !== topic));
-	};
 
 	const onChange = e => {
 		if (errors) setErrors(errors.filter(error => error.path !== e.target.name));
@@ -100,8 +84,7 @@ const EditProfile = ({ match, history }) => {
 				linkedin_URL,
 				website_URL,
 				picture_URL: url,
-				hideSocial,
-				tags: userTopics
+				hideSocial
 			}
 		});
 		if (res.data.updateProfile.statusCode === 201) {
@@ -134,8 +117,7 @@ const EditProfile = ({ match, history }) => {
 				linkedin_URL,
 				website_URL,
 				picture_URL: user.profile[0].picture_URL,
-				hideSocial,
-				tags: userTopics
+				hideSocial
 			}
 		});
 		if (res.data.updateProfile.statusCode === 201) {
@@ -275,18 +257,7 @@ const EditProfile = ({ match, history }) => {
 										</label>
 									</div>
 
-									<div className="py-2 text-left">
-										<TagsChooser
-											topicsPool={topicsPool}
-											addTopic={addTopic}
-											userTopics={userTopics}
-											deleteTopic={deleteTopic}
-											main="Choose the topics your are interested in"
-											secondary="Will allow you to quickly find the informations you are interested in"
-										/>
-
-										<input type="submit" className="btn bg-blue text-white btn-block mt-4 mb-2" />
-									</div>
+									<input type="submit" className="btn bg-blue text-white btn-block mt-4 mb-2" />
 								</div>
 							</form>
 						)}
