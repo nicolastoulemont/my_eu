@@ -4,11 +4,7 @@ import DefaultNav from '../navs/DefaultNav';
 import Footer from './Footer';
 import ErrorIcon from '../../img/errorIcon.svg';
 
-const RouteError = props => {
-	const goBack = () => {
-		props.history.goBack();
-	};
-
+const RouteError = () => {
 	return (
 		<Fragment>
 			<DefaultNav />
@@ -26,7 +22,7 @@ const RouteError = props => {
 									</h6>
 									<h6 className="text-left text-muted py-2">
 										To go back to your last page, click{` `}
-										<Link to="#" className="font-weight-bold text-blue" onClick={goBack}>
+										<Link to="/home" className="font-weight-bold text-blue">
 											here
 										</Link>
 										.
