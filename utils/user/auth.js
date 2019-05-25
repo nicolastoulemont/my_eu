@@ -64,7 +64,13 @@ const sendVerificationEmail = user => {
 
 	const emailToken = jwt.sign({ id: user.id }, process.env.EMAIL_SECRET, { expiresIn: '1d' });
 
-	const emailVerificationUrl = `https://www.my-eu.eu/confirmation/${emailToken}`;
+	let emailVerificationUrl;
+
+	if (process.env.NODE_ENV === 'production') {
+		emailVerificationUrl = `https://www.my-eu.eu/confirmation/${emailToken}`;
+	} else {
+		emailVerificationUrl = `http://localhost:3000/confirmation/${emailToken}`;
+	}
 
 	const emailHtml = `
 		<!DOCTYPE html>
@@ -143,7 +149,12 @@ const sendEventPublicVerificationEmail = (user, event) => {
 		expiresIn: '1d'
 	});
 
-	const publicEventVerificationUrl = `https://www.my-eu.eu/confirmation/${publicEventToken}`;
+	let publicEventVerificationUrl;
+	if (process.env.NODE_ENV === 'production') {
+		publicEventVerificationUrl = `https://www.my-eu.eu/confirmation/${publicEventToken}`;
+	} else {
+		publicEventVerificationUrl = `http://localhost:3000/confirmation/${publicEventToken}`;
+	}
 
 	const emailHtml = `
 	<!DOCTYPE html>
