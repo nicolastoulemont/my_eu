@@ -165,7 +165,6 @@ const EditProfile = ({ match, history }) => {
 								{ query: GET_USER_FULL_PROFILE, variables: { user_ID: user.id } }
 							];
 						}}
-						awaitRefetchQueries={true}
 					>
 						{(updateProfile, e) => (
 							<form onSubmit={e => editProfile(e, updateProfile, signS3)}>

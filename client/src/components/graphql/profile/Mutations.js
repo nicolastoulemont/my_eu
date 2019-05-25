@@ -36,6 +36,13 @@ export const CREATE_PROFILE = gql`
 				name
 				position
 				organisation
+				hideSocial
+				privateProfile
+				bio
+				twitter_URL
+				linkedin_URL
+				website_URL
+				picture_URL
 			}
 		}
 	}
@@ -79,6 +86,13 @@ export const UPDATE_PROFILE = gql`
 				name
 				position
 				organisation
+				hideSocial
+				privateProfile
+				bio
+				twitter_URL
+				linkedin_URL
+				website_URL
+				picture_URL
 			}
 		}
 	}

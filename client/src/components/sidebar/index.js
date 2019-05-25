@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Spring } from 'react-spring/renderprops';
 import DatesPicker from './DatesPicker';
+import { withApollo } from 'react-apollo';
+import { LOGGED_USER } from '../graphql/user/Queries';
+
 import SBSuggestions from './sideBarSuggestions';
 import SBPanel from './sideBarPanel';
 import SBNoProfile from './sideBarNoProfile';
-import { UserContext } from '../contexts';
 
-const SideBar = ({ history }) => {
-	const user = useContext(UserContext);
+const SideBar = ({ history, client }) => {
+	const user = client.cache.readQuery({ query: LOGGED_USER }).currentUser.body;
 	const path = window.location.pathname;
 	return (
 		<div className="sticky">
@@ -38,4 +40,4 @@ const SideBar = ({ history }) => {
 	);
 };
 
-export default SideBar;
+export default withApollo(SideBar);

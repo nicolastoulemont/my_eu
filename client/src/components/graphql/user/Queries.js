@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const LOGGED_USER = gql`
-	{
+	query CurrentUser {
 		currentUser {
 			statusCode
 			ok
@@ -33,7 +33,7 @@ export const LOGGED_USER = gql`
 `;
 
 export const LOGGED_USER_ID = gql`
-	{
+	query CurrentUser {
 		currentUser {
 			statusCode
 			ok

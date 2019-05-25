@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { withApollo } from 'react-apollo';
 import dayjs from 'dayjs';
 import DefaultAvatar from '../../img/avatar_default.svg';
-import { UserContext } from '../contexts/index';
 import { useStateValue } from '../contexts/InitialState';
+import { LOGGED_USER } from '../graphql/user/Queries';
 
 const UserNav = ({ client }) => {
-	const user = useContext(UserContext);
+	const user = client.cache.readQuery({ query: LOGGED_USER }).currentUser.body;
 	const [
 		{
 			userSearchPref: { dateString }

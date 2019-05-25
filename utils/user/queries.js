@@ -1,5 +1,4 @@
 const { createTokens } = require('./auth');
-const jwt = require('jsonwebtoken');
 
 const findCurrentUser = async (user, User) => {
 	if (!user.needTokens) {

@@ -9,7 +9,6 @@ import { Mutation } from 'react-apollo';
 import { CREATE_PROFILE } from '../../graphql/profile/Mutations';
 import { SIGN_S3 } from '../../graphql/s3/Mutation';
 import { LOGGED_USER } from '../../graphql/user/Queries';
-import { GET_USER_FULL_PROFILE } from '../../graphql/profile/Queries';
 import { UserContext } from '../../contexts';
 import { findErrorInErrorsArr, frontEndProfileInputValidation } from '../../commons/ErrorsHandling';
 
@@ -135,11 +134,25 @@ const CreateProfile = ({
 				{(signS3, e) => (
 					<Mutation
 						mutation={CREATE_PROFILE}
-						refetchQueries={() => {
-							return [
-								{ query: GET_USER_FULL_PROFILE, variables: { user_ID: id } },
-								{ query: LOGGED_USER }
-							];
+						update={(cache, { data }) => {
+							const user = cache.readQuery({ query: LOGGED_USER });
+							cache.writeQuery({
+								query: LOGGED_USER,
+								data: {
+									currentUser: {
+										accessToken: null,
+										refreshToken: null,
+										errors: null,
+										ok: true,
+										statusCode: 200,
+										__typename: 'AuthResponse',
+										body: {
+											...user.currentUser.body,
+											profile: [{ ...data.addProfile.body }]
+										}
+									}
+								}
+							});
 						}}
 					>
 						{(addProfile, e) => (
