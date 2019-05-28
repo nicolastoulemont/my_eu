@@ -26,14 +26,18 @@ const EventHeader = () => {
 							<div className="title">
 								<h4 className="font-weight-bold text-uppercase">
 									{event.name}
-									{' - '}
+									
 									{event.type === 'institutional' ? (
+										<Fragment>
+										{' - '}
 										<i
 											data-togggle="tooltip"
 											data-placement="bottom"
 											title="Institutional Event"
 											className="fas fa-university ml-2"
 										/>
+										</Fragment>
+										
 									) : null}
 								</h4>
 								<Link

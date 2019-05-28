@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Spring } from 'react-spring/renderprops';
 import DatesPicker from './DatesPicker';
 import { UserContext } from '../contexts';
-
 import SBSuggestions from './sideBarSuggestions';
 import SBPanel from './sideBarPanel';
 import SBNoProfile from './sideBarNoProfile';

@@ -22,17 +22,16 @@ const buildEvent = async (args, EventItem) => {
 		return {
 			statusCode: 201,
 			ok: true,
-			errors: null,
 			body: event
 		};
 	} catch (err) {
 		return {
 			statusCode: 404,
 			ok: false,
-			errors: {
+			errors: [{
 				path: 'Not Found',
 				message: 'The server cannot find the requested ressource'
-			}
+			}]
 		};
 	}
 };
@@ -62,17 +61,16 @@ const updateEvent = async (args, EventItem) => {
 		return {
 			statusCode: 201,
 			ok: true,
-			errors: null,
 			body: updEvent
 		};
 	} catch (err) {
 		return {
 			statusCode: 404,
 			ok: false,
-			errors: {
+			errors: [{
 				path: 'Not Found',
 				message: 'The server cannot find the requested ressource'
-			}
+			}]
 		};
 	}
 };
@@ -91,30 +89,30 @@ const deleteEvent = async (args, EventItem) => {
 				return {
 					statusCode: 404,
 					ok: false,
-					errors: {
+					errors: [{
 						path: 'Not Found',
 						message: 'The server cannot find the requested ressource'
-					}
+					}]
 				};
 			}
 		} else {
 			return {
 				statusCode: 403,
 				ok: false,
-				errors: {
+				errors: [{
 					path: 'Forbidden',
 					message: 'You cannot perform this action'
-				}
+				}]
 			};
 		}
 	} catch (err) {
 		return {
 			statusCode: 404,
 			ok: false,
-			errors: {
+			errors: [{
 				path: 'Not Found',
 				message: 'The server cannot find the requested ressource'
-			}
+			}]
 		};
 	}
 };

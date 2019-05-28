@@ -16,7 +16,6 @@ const eventSchema = new Schema({
 	},
 	eventHost: {
 		type: String,
-		required: true
 	},
 	banner_URL: String,
 	description: {
@@ -55,12 +54,10 @@ const eventSchema = new Schema({
 		default: Date.now()
 	},
 	start: {
-		type: Date,
-		required: true
+		type: Date
 	},
 	end: {
-		type: Date,
-		required: true
+		type: Date
 	},
 	likesCount: {
 		type: Number,
@@ -72,20 +69,16 @@ const eventSchema = new Schema({
 		required: true
 	},
 	authorName: {
-		type: String,
-		required: true
+		type: String
 	},
 	author_URL: {
-		type: String,
-		required: true
+		type: String
 	},
 	authorPicture_URL: {
-		type: String,
-		required: true
+		type: String
 	},
 	postOrigin_URL: {
-		type: String,
-		required: true
+		type: String
 	},
 	tags: {
 		type: [String]
