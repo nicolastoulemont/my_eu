@@ -6,7 +6,6 @@ import { UserContext } from '../../contexts';
 import { useStateValue } from '../../contexts/InitialState';
 import { DELETE_EVENT } from '../../graphql/event/Mutations';
 import {
-	GET_EVENTS,
 	GET_USER_FUTURE_HOSTED_EVENTS,
 	GET_USER_PAST_HOSTED_EVENTS
 } from '../../graphql/event/Queries';
@@ -30,7 +29,7 @@ const DeleteEvent = ({ match, history }) => {
 	const delEvent = useMutation(DELETE_EVENT, {
 		variables: { _id: stateEvent.id, user_ID: user.id },
 		refetchQueries: () => {
-			return [{ query: GET_EVENTS }, refetchCorrectQuery()];
+			return [refetchCorrectQuery()];
 		}
 	});
 
