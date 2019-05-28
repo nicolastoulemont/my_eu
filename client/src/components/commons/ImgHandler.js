@@ -6,7 +6,9 @@ import DefaultEvent from '../../img/default_event.svg';
 const ImgHandler = ({ func, picture, x, y, placeholder, setErrors, errors, error }) => {
 	const resizeImage = (file, x, y, func) => {
 		if (file) {
-			setErrors(errors.filter(error => error.path !== 'imgHandler'));
+			if(errors) {
+				setErrors(errors.filter(error => error.path !== 'imgHandler'));
+			}
 			const fileName = file.name;
 			const reader = new FileReader();
 			reader.readAsDataURL(file);
