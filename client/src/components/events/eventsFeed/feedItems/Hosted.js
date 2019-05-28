@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import DefaultAvatar from '../../../../img/default_avatar.svg';
+import DefaultAvatar from '../../../../img/avatar_default.svg';
 import { UserContext } from '../../../contexts';
 
 const HostedItem = ({ event }) => {
