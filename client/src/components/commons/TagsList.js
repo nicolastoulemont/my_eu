@@ -35,6 +35,7 @@ export const tagsList = [
 	'Internal Market',
 	'Consumer Protection',
 	'Industry',
+	'Space',
 	'Competition',
 	'Regional Development',
 	'Transport',
