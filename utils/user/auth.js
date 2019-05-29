@@ -67,7 +67,7 @@ const sendVerificationEmail = user => {
 	let emailVerificationUrl;
 
 	if (process.env.NODE_ENV === 'production') {
-		emailVerificationUrl = `https://www.my-eu.eu/confirmation/${emailToken}`;
+		emailVerificationUrl = `https://my-eu.eu/confirmation/${emailToken}`;
 	} else {
 		emailVerificationUrl = `http://localhost:3000/confirmation/${emailToken}`;
 	}
@@ -151,7 +151,7 @@ const sendEventPublicVerificationEmail = (user, event) => {
 
 	let publicEventVerificationUrl;
 	if (process.env.NODE_ENV === 'production') {
-		publicEventVerificationUrl = `https://www.my-eu.eu/confirmation/${publicEventToken}`;
+		publicEventVerificationUrl = `https://my-eu.eu/confirmation/${publicEventToken}`;
 	} else {
 		publicEventVerificationUrl = `http://localhost:3000/confirmation/${publicEventToken}`;
 	}
@@ -234,7 +234,7 @@ const sendForgotPwdEmail = (user, email) => {
 	});
 	let resetPwdUrl;
 	if (process.env.NODE_ENV === 'production') {
-		resetPwdUrl = `https://www.my-eu.eu/reset_password/${resetPwdEmailToken}`;
+		resetPwdUrl = `https://my-eu.eu/reset_password/${resetPwdEmailToken}`;
 	} else {
 		resetPwdUrl = `http://localhost:3000/reset_password/${resetPwdEmailToken}`;
 	}
