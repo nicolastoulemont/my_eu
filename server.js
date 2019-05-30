@@ -8,6 +8,9 @@ const models = require('./models');
 const Loaders = require('./utils/DataLoaders');
 const connectDB = require('./config/db');
 const { AuthUser } = require('./utils/user/auth');
+const RateLimit = require('express-rate-limit');
+const RedisStore = require('rate-limit-redis');
+const redis = require('redis');
 
 const startServer = async () => {
 	await connectDB();
@@ -40,6 +43,19 @@ const startServer = async () => {
 	}
 
 	app.use(helmet());
+
+	app.set('trust proxy', 1);
+
+	const limiter = new RateLimit({
+		store: new RedisStore({
+			client: redis
+		}),
+		windowMs: 15 * 60 * 1000, // 15 minutes
+		max: 100,
+		delayMs: 0
+	});
+
+	app.use(limiter);
 
 	server.applyMiddleware({ app });
 
