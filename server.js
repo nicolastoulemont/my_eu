@@ -47,7 +47,6 @@ const startServer = async () => {
 	const limiter = new RateLimit({
 		windowMs: 15 * 60 * 1000, // 15 minutes
 		max: 100,
-		delayMs: 0
 	});
 
 	app.use(limiter);
