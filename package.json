@@ -24,6 +24,7 @@
 		"express": "^4.17.0",
 		"graphql": "^14.3.0",
 		"graphql-tools": "^4.0.4",
+		"helmet": "^3.18.0",
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^5.5.10",
 		"nodemailer": "^6.1.1",

@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const helmet = require('helmet');
 const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
 const schema = require('./schema/schema');
@@ -9,8 +10,6 @@ const connectDB = require('./config/db');
 const { AuthUser } = require('./utils/user/auth');
 
 const startServer = async () => {
-	const app = express();
-
 	await connectDB();
 
 	const server = new ApolloServer({
@@ -28,6 +27,8 @@ const startServer = async () => {
 		playground: true
 	});
 
+	const app = express();
+
 	// Server static assets in prod
 	if (process.env.NODE_ENV === 'production') {
 		// Set static folder
@@ -37,6 +38,8 @@ const startServer = async () => {
 			res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 		});
 	}
+
+	app.use(helmet());
 
 	server.applyMiddleware({ app });
 
