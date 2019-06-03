@@ -87,31 +87,41 @@ const FeedSearch = ({
 		setSort('descending');
 	};
 
-	const handleType = () => {
-		if (type === '') {
-			dispatch({
-				type: 'SET_TYPE',
-				newType: {
-					sort: userSearchPref.sort,
-					type: 'institutional',
-					price: userSearchPref.price,
-					tags: userSearchPref.tags
-				}
-			});
-			setType('institutional');
-		}
-		if (type === 'institutional') {
-			dispatch({
-				type: 'SET_TYPE',
-				newType: {
-					sort: userSearchPref.sort,
-					type: '',
-					price: userSearchPref.price,
-					tags: userSearchPref.tags
-				}
-			});
-			setType('');
-		}
+	const setTypeToInstitutional = () => {
+		dispatch({
+			type: 'SET_TYPE',
+			newType: {
+				sort: userSearchPref.sort,
+				type: 'institutional',
+				price: userSearchPref.price,
+				tags: userSearchPref.tags
+			}
+		});
+		setType('institutional');
+	};
+	const setTypeTopoliticalParty = () => {
+		dispatch({
+			type: 'SET_TYPE',
+			newType: {
+				sort: userSearchPref.sort,
+				type: 'political party',
+				price: userSearchPref.price,
+				tags: userSearchPref.tags
+			}
+		});
+		setType('political party');
+	};
+	const setTypeToNone = () => {
+		dispatch({
+			type: 'SET_TYPE',
+			newType: {
+				sort: userSearchPref.sort,
+				type: '',
+				price: userSearchPref.price,
+				tags: userSearchPref.tags
+			}
+		});
+		setType('');
 	};
 
 	const handlePrice = () => {
@@ -227,21 +237,63 @@ const FeedSearch = ({
 				<div className={classNames('row justify-content-end pr-2', { 'mb-2': advancedSearch })}>
 					<div className="d-flex flex-row-reverse pr-2">
 						{path.includes('news') || path.includes('events') ? (
-							<Link
-								to="#"
-								className="ml-2"
-								data-togggle="tooltip"
-								data-placement="bottom"
-								title="Only show institutional events"
-								onClick={handleType}
-							>
-								<span className={classNames('m-0', { 'text-blue': type === 'institutional' })}>
-									<small>
-										<i className="fas fa-university mx-2 mt-2" />
-										Institutional
-									</small>
-								</span>
-							</Link>
+							<Fragment>
+								<div className="dropdown">
+									<Link
+										to="#"
+										className="ml-2"
+										data-toggle="dropdown"
+										role="button"
+										aria-haspopup="true"
+										aria-expanded="false"
+										data-togggle="tooltip"
+										data-placement="bottom"
+										title="Select by Type"
+									>
+										<span className={classNames('m-0', { 'text-blue': type !== '' })}>
+											<small>
+												<i className="fas fa-university mx-2 mt-2" />
+												Filter by Type
+											</small>
+										</span>
+									</Link>
+									<ul className="dropdown-menu dropdown-menu-right">
+										<li>
+											<Link
+												className={classNames('dropdown-item py-0 my-0', {
+													'text-blue': type === ''
+												})}
+												to="#"
+												onClick={setTypeToNone}
+											>
+												<small>None</small>
+											</Link>
+										</li>
+										<li>
+											<Link
+												className={classNames('dropdown-item py-0 my-0', {
+													'text-blue': type === 'institutional'
+												})}
+												to="#"
+												onClick={setTypeToInstitutional}
+											>
+												<small>Institutional</small>
+											</Link>
+										</li>
+										<li>
+											<Link
+												className={classNames('dropdown-item py-0 my-0', {
+													'text-blue': type === 'political party'
+												})}
+												to="#"
+												onClick={setTypeTopoliticalParty}
+											>
+												<small>Political Party</small>
+											</Link>
+										</li>
+									</ul>
+								</div>
+							</Fragment>
 						) : null}
 
 						{path.includes('events') ? (
