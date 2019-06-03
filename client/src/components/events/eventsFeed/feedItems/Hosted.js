@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import DefaultAvatar from '../../../../img/avatar_default.svg';
 import { UserContext } from '../../../contexts';
+import TypeHandler from '../../../commons/TypeHandler';
 
 const HostedItem = ({ event }) => {
 	const user = useContext(UserContext);
@@ -23,15 +24,8 @@ const HostedItem = ({ event }) => {
 			</Link>
 			<div className="media-body">
 				<h6 className="text-left mb-0">
-					<Link to={`/home/event/${event.id}`}> {event.name} </Link> -{' '}
-					{event.type === 'institutional' ? (
-						<i
-							data-togggle="tooltip"
-							data-placement="bottom"
-							title="Institutional Event"
-							className="fas fa-university mx-2"
-						/>
-					) : null}
+					<Link to={`/home/event/${event.id}`}> {event.name} </Link>{' '}
+					<TypeHandler type={event.type} feed="event" />
 					{event.createdAt !== event.updatedAt ? (
 						<small className="font-italic">edited {dayjs(event.updatedAt).fromNow()}</small>
 					) : (

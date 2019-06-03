@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import DefaultAvatar from '../../img/default_avatar.svg';
+import DefaultAvatar from '../../img/avatar_default.svg';
 import CQuery from '../commons/CustomQueryComponent';
 import { EventContext, UserContext } from '../contexts';
 import RegistrationsModal from './RegistrationsList/RegistrationsModal';

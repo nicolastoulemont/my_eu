@@ -3,6 +3,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DefaultAvatar from '../../../../img/default_avatar.svg';
+import TypeHandler from '../../../commons/TypeHandler';
 
 const HostedItem = ({ post }) => {
 	dayjs.extend(relativeTime);
@@ -22,14 +23,7 @@ const HostedItem = ({ post }) => {
 			<div className="media-body">
 				<h6 className="text-left mb-0">
 					<Link to={`/home/post/${post.id}`}> {post.name} </Link> -{' '}
-					{post.type === 'institutional' ? (
-						<i
-							data-togggle="tooltip"
-							data-placement="bottom"
-							title="Institutional Event"
-							className="fas fa-university mx-2"
-						/>
-					) : null}
+					<TypeHandler type={post.type} feed="news" />
 					{post.createdAt !== post.updatedAt ? (
 						<small className="font-italic">edited {dayjs(post.updatedAt).fromNow()}</small>
 					) : (

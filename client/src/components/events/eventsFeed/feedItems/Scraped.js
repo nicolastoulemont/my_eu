@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import React, { Fragment } from 'react';
+import React from 'react';
+import TypeHandler from '../../../commons/TypeHandler';
 
 const ScrapedItem = ({ event }) => {
 	dayjs.extend(relativeTime);
@@ -16,19 +17,9 @@ const ScrapedItem = ({ event }) => {
 			<div className="media-body">
 				<h6 className="text-left mb-0">
 					<a href={event.eventOrigin_URL} target="#">
-						{event.name}
+						{event.name} {` `}
 					</a>
-					{event.type === 'institutional' ? (
-						<Fragment>
-							{` -`}{' '}
-							<i
-								data-togggle="tooltip"
-								data-placement="bottom"
-								title="Institutional Event"
-								className="fas fa-university mx-2"
-							/>
-						</Fragment>
-					) : null}
+					<TypeHandler type={event.type} feed="event" />
 					{event.createdAt !== event.updatedAt ? (
 						<small className="font-italic">edited {dayjs(event.updatedAt).fromNow()}</small>
 					) : (

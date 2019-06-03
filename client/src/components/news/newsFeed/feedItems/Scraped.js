@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import React from 'react';
+import TypeHandler from '../../../commons/TypeHandler';
 
 const ScrapedItem = ({ post }) => {
 	dayjs.extend(relativeTime);
@@ -16,17 +17,9 @@ const ScrapedItem = ({ post }) => {
 			<div className="media-body">
 				<h6 className="text-left mb-0">
 					<a href={post.postOrigin_URL} target="#">
-						{post.name} -
+						{post.name} {` `}
 					</a>
-
-					{post.type === 'institutional' ? (
-						<i
-							data-togggle="tooltip"
-							data-placement="bottom"
-							title="Institutional Event"
-							className="fas fa-university mx-2"
-						/>
-					) : null}
+					<TypeHandler type={post.type} feed="news" />
 					{post.createdAt !== post.updatedAt ? (
 						<small className="font-italic">edited {dayjs(post.updatedAt).fromNow()}</small>
 					) : (
