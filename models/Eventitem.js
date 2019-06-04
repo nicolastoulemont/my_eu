@@ -77,7 +77,7 @@ const eventSchema = new Schema({
 	authorPicture_URL: {
 		type: String
 	},
-	postOrigin_URL: {
+	eventOrigin_URL: {
 		type: String
 	},
 	tags: {
