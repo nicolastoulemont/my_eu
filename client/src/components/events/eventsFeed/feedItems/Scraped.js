@@ -48,9 +48,13 @@ const ScrapedItem = ({ event }) => {
 				<p className="text-left">{event.abstract}</p>
 				<p className="text-left mb-0">
 					{' '}
-					<small>
-						{event.address}, {event.city}
-					</small>
+					{event.address !== event.city ? (
+						<small>
+							{event.address}, {event.city}
+						</small>
+					) : (
+						<small>{event.address}</small>
+					)}
 				</p>
 				<p className="text-left mb-0">
 					{new Date(event.start).getDate() === new Date(event.end).getDate() ? (
