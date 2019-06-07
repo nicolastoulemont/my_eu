@@ -111,7 +111,8 @@ const dailyEventsWithTags = async (date, dayafter, args, EventItem) => {
 			price: { $lte: args.price },
 			$or: [
 				{ name: { $regex: new RegExp(args.search, 'i') } },
-				{ abstract: { $regex: new RegExp(args.search, 'i') } }
+				{ abstract: { $regex: new RegExp(args.search, 'i') } },
+				{ authorName: { $regex: new RegExp(args.search, 'i') } }
 			]
 		})
 			.sort({ start: args.sort })
@@ -144,7 +145,8 @@ const dailyEventsWithOutTags = async (date, dayafter, args, EventItem) => {
 			price: { $lte: args.price },
 			$or: [
 				{ name: { $regex: new RegExp(args.search, 'i') } },
-				{ abstract: { $regex: new RegExp(args.search, 'i') } }
+				{ abstract: { $regex: new RegExp(args.search, 'i') } },
+				{ authorName: { $regex: new RegExp(args.search, 'i') } }
 			]
 		})
 			.sort({ start: args.sort })

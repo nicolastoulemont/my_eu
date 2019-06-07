@@ -51,7 +51,8 @@ const dailyPostsWithTags = async (date, dayafter, args, Post) => {
 			type: { $regex: new RegExp(args.type, 'i') },
 			$or: [
 				{ name: { $regex: new RegExp(args.search, 'i') } },
-				{ abstract: { $regex: new RegExp(args.search, 'i') } }
+				{ abstract: { $regex: new RegExp(args.search, 'i') } },
+				{ authorName: { $regex: new RegExp(args.search, 'i') } }
 			]
 		})
 			.sort({ createdAt: args.sort })
@@ -83,7 +84,8 @@ const dailyPostsWithOutTags = async (date, dayafter, args, Post) => {
 			type: { $regex: new RegExp(args.type, 'i') },
 			$or: [
 				{ name: { $regex: new RegExp(args.search, 'i') } },
-				{ abstract: { $regex: new RegExp(args.search, 'i') } }
+				{ abstract: { $regex: new RegExp(args.search, 'i') } },
+				{ authorName: { $regex: new RegExp(args.search, 'i') } }
 			]
 		})
 			.sort({ createdAt: args.sort })
