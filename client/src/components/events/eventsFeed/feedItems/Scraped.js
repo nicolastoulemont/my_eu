@@ -47,7 +47,6 @@ const ScrapedItem = ({ event }) => {
 				</p>
 				<p className="text-left">{event.abstract}</p>
 				<p className="text-left mb-0">
-					{' '}
 					{event.address !== event.city ? (
 						<small>
 							{event.address}, {event.city}
