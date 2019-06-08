@@ -48,6 +48,7 @@ const mostLikedEventsWithTags = async (date, dayafter, args, EventItem) => {
 		const events = await EventItem.find({
 			start: { $gte: date, $lte: dayafter },
 			isPublic: true,
+			scraped: false,
 			tags: { $in: args.tags },
 			type: { $regex: new RegExp(args.type, 'i') },
 			price: { $lte: args.price }
@@ -77,6 +78,7 @@ const mostLikedEventsWithOutTags = async (date, dayafter, args, EventItem) => {
 		const events = await EventItem.find({
 			start: { $gte: date, $lte: dayafter },
 			isPublic: true,
+			scraped: false,
 			type: { $regex: new RegExp(args.type, 'i') },
 			price: { $lte: args.price }
 		})

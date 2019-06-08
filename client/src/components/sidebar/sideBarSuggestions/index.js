@@ -37,11 +37,6 @@ const SBSuggestions = () => {
 		if (type === 'institutional') setType('');
 	};
 
-	const handleTags = e => {
-		if (tags.length === 0) setTags(user.profile.tags);
-		if (tags.length !== 0) setTags([]);
-	};
-
 	const handlePrice = e => {
 		if (price === 0) setPrice(10000);
 		if (price === 10000) setPrice(0);
@@ -82,22 +77,6 @@ const SBSuggestions = () => {
 								<i className="fas fa-university mx-2 mt-2" />
 							)}
 						</Link>
-						{user.profile && user.profile.tags && user.profile.tags.length !== 0 ? (
-							<Link
-								to="#"
-								data-togggle="tooltip"
-								data-placement="bottom"
-								title="Filter with your Profile topics"
-								onClick={handleTags}
-							>
-								{' '}
-								{tags.length === 0 ? (
-									<i className="fas fa-tags mx-2 mt-2" />
-								) : (
-									<i className="fas fa-tags text-blue mx-2 mt-2" />
-								)}
-							</Link>
-						) : null}
 
 						<Link
 							to="#"
