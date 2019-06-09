@@ -1,4 +1,4 @@
-const { Like } = require('../../models/');
+const Like = require('./model');
 const { isEmpty } = require('../utils');
 
 const ValidateAddLike = async data => {

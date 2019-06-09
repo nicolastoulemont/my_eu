@@ -1,4 +1,4 @@
-const { Report } = require('../../models');
+const Report = require('./model');
 const { isEmpty } = require('../utils');
 const Validator = require('validator');
 

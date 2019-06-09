@@ -1,7 +1,7 @@
 const Validator = require('validator');
 const dayjs = require('dayjs');
 const { isEmpty, ValidStringRegExp } = require('../utils');
-const { EventItem } = require('../../models/');
+const EventItem = require('./model');
 
 const validateEventInput = async data => {
 	let errors = [];

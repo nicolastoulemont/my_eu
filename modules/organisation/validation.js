@@ -1,6 +1,6 @@
 const Validator = require('validator');
 const { isEmpty } = require('../utils');
-const { Organisation } = require('../../models/');
+const Organisation = require('./model');
 
 const validateOrgInput = async data => {
 	let errors = [];

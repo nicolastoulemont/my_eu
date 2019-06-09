@@ -1,6 +1,6 @@
 const Validator = require('validator');
 const { isEmpty, ValidStringRegExp } = require('../utils');
-const { Post } = require('../../models/');
+const Post = require('./model');
 
 const validatePostInput = async data => {
 	let errors = [];

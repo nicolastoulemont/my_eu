@@ -1,7 +1,7 @@
 const Validator = require('validator');
 const bcrypt = require('bcrypt');
 const { isEmpty, ValidStringRegExp } = require('../utils');
-const { User } = require('../../models');
+const User = require('./model');
 
 const validateRegInput = async data => {
 	let errors = [];
