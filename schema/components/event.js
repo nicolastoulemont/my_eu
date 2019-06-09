@@ -3,8 +3,7 @@ const { validateEventInput, validateUpdEventIntput } = require('../../utils/even
 const {
 	findEvent,
 	findEvents,
-	mostLikedEventsWithTags,
-	mostLikedEventsWithOutTags,
+	mostLikedEvents,
 	dailyEventsWithTags,
 	dailyEventsWithOutTags,
 	searchUserEvents,
@@ -67,13 +66,7 @@ module.exports = {
 		extend type Query {
 			event(id: ID!): EventResponse!
 			events(limit: Int): EventsResponse!
-			mostLikedEvents(
-				date: String!
-				limit: Int!
-				type: String
-				price: Float
-				tags: [String]
-			): EventsResponse!
+			mostLikedEvents(date: String!, limit: Int!, type: String, price: Float): EventsResponse!
 			searchDailyEvents(
 				date: String!
 				search: String
@@ -146,11 +139,7 @@ module.exports = {
 			},
 			mostLikedEvents: async (parent, args, { user, models: { EventItem } }) => {
 				const { date, dayafter } = getDatesFromString(args.date);
-				if (args.tags.length !== 0) {
-					return await mostLikedEventsWithTags(date, dayafter, args, EventItem);
-				} else if (args.tags.length === 0) {
-					return await mostLikedEventsWithOutTags(date, dayafter, args, EventItem);
-				}
+				return await mostLikedEvents(date, dayafter, args, EventItem);
 			},
 			searchDailyEvents: async (parent, args, { user, models: { EventItem } }) => {
 				if (!user) throw new AuthenticationError('Please login to get the requested response');

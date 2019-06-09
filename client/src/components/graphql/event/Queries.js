@@ -60,14 +60,8 @@ export const SEARCH_DAILY_EVENTS = gql`
 `;
 
 export const GET_MOST_LIKED_EVENTS = gql`
-	query mostLikedEvents(
-		$date: String!
-		$limit: Int!
-		$type: String
-		$price: Float
-		$tags: [String]
-	) {
-		mostLikedEvents(date: $date, limit: $limit, type: $type, price: $price, tags: $tags) {
+	query mostLikedEvents($date: String!, $limit: Int!, $type: String, $price: Float) {
+		mostLikedEvents(date: $date, limit: $limit, type: $type, price: $price) {
 			statusCode
 			ok
 			errors {

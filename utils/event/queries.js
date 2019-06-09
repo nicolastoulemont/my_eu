@@ -43,37 +43,7 @@ const findEvents = async (args, EventItem) => {
 	}
 };
 
-const mostLikedEventsWithTags = async (date, dayafter, args, EventItem) => {
-	try {
-		const events = await EventItem.find({
-			start: { $gte: date, $lte: dayafter },
-			isPublic: true,
-			scraped: false,
-			tags: { $in: args.tags },
-			type: { $regex: new RegExp(args.type, 'i') },
-			price: { $lte: args.price }
-		})
-			.sort({ likesCount: -1 })
-			.limit(args.limit);
-		return {
-			statusCode: 200,
-			ok: true,
-			errors: null,
-			body: events
-		};
-	} catch (err) {
-		return {
-			statusCode: 404,
-			ok: false,
-			errors: {
-				path: 'Not Found',
-				message: 'The server cannot find the requested ressource'
-			}
-		};
-	}
-};
-
-const mostLikedEventsWithOutTags = async (date, dayafter, args, EventItem) => {
+const mostLikedEvents = async (date, dayafter, args, EventItem) => {
 	try {
 		const events = await EventItem.find({
 			start: { $gte: date, $lte: dayafter },
@@ -84,7 +54,6 @@ const mostLikedEventsWithOutTags = async (date, dayafter, args, EventItem) => {
 		})
 			.sort({ likesCount: -1 })
 			.limit(args.limit);
-
 		return {
 			statusCode: 200,
 			ok: true,
@@ -275,8 +244,7 @@ const findUserEvents = async (args, EventItem) => {
 module.exports = {
 	findEvent,
 	findEvents,
-	mostLikedEventsWithOutTags,
-	mostLikedEventsWithTags,
+	mostLikedEvents,
 	dailyEventsWithOutTags,
 	dailyEventsWithTags,
 	searchUserEvents,

@@ -1,17 +1,13 @@
-import React, { useState, useContext, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 import CQuery from '../../commons/CustomQueryComponent';
 import { GET_MOST_LIKED_EVENTS } from '../../graphql/event/Queries';
-import { UserContext } from '../../contexts';
 import PanelItem from '../../commons/PanelItem';
 
 const SBSuggestions = () => {
-	const user = useContext(UserContext);
-
 	const [type, setType] = useState('');
 	const [price, setPrice] = useState(10000);
-	const [tags, setTags] = useState([]);
 	const [day, setDay] = useState(false);
 	const [threeDays, setThreeDays] = useState(false);
 	const [week, setWeek] = useState(true);
@@ -137,7 +133,7 @@ const SBSuggestions = () => {
 				<div className="mt-1 w-100">
 					<CQuery
 						query={GET_MOST_LIKED_EVENTS}
-						variables={{ date: returnDateString(), limit: 3, type, price, tags }}
+						variables={{ date: returnDateString(), limit: 3, type, price }}
 					>
 						{({ data }) => {
 							if (data.mostLikedEvents && data.mostLikedEvents.body) {
