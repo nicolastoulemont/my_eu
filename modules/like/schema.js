@@ -1,13 +1,13 @@
 const { gql, AuthenticationError } = require('apollo-server');
-const { ValidateAddLike } = require('../../utils/like/validation');
-const { buildLike, deleteLike } = require('../../utils/like/actions');
+const { ValidateAddLike } = require('./validation');
+const { buildLike, deleteLike } = require('./actions');
 const {
 	findLike,
 	findLikes,
 	findEventLikes,
 	findCommentLikes,
 	findUserLikes
-} = require('../../utils/like/queries');
+} = require('./queries');
 
 module.exports = {
 	LikeType: gql`

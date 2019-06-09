@@ -1,4 +1,4 @@
-const { isEmpty, ValidStringRegExp } = require('../general');
+const { isEmpty, ValidStringRegExp } = require('../utils');
 
 const validateCommentInput = async data => {
 	let errors = [];

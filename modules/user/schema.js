@@ -11,8 +11,7 @@ const {
 	changePassword,
 	resetPassword,
 	deleteAccount
-} = require('../../utils/user/actions');
-// Validation
+} = require('./actions');
 const {
 	validateRegInput,
 	validateLoginInput,
@@ -21,8 +20,8 @@ const {
 	validateChangeEmailInput,
 	validateChangePasswordInput,
 	validateDeleteAccountInput
-} = require('../../utils/user/validation');
-const { findCurrentUser } = require('../../utils/user/queries');
+} = require('./validation');
+const { findCurrentUser } = require('./queries');
 
 module.exports = {
 	UserType: gql`

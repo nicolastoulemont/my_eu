@@ -1,5 +1,5 @@
 const Validator = require('validator');
-const { isEmpty, ValidStringRegExp } = require('../general');
+const { isEmpty, ValidStringRegExp } = require('../utils');
 
 const validateProfileInput = async data => {
 	let errors = [];

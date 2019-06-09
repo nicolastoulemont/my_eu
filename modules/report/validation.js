@@ -1,5 +1,5 @@
 const { Report } = require('../../models');
-const { isEmpty } = require('../general');
+const { isEmpty } = require('../utils');
 const Validator = require('validator');
 
 const ValidateAddReport = async data => {

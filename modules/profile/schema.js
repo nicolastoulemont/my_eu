@@ -1,12 +1,7 @@
 const { gql, AuthenticationError } = require('apollo-server');
-const { buildProfile, updateProfile, deleteProfile } = require('../../utils/profile/actions');
-const { validateProfileInput } = require('../../utils/profile/validation');
-const {
-	findProfile,
-	findProfiles,
-	findProfilesByNames,
-	findUserProfile
-} = require('../../utils/profile/queries');
+const { buildProfile, updateProfile, deleteProfile } = require('./actions');
+const { validateProfileInput } = require('./validation');
+const { findProfile, findProfiles, findProfilesByNames, findUserProfile } = require('./queries');
 
 module.exports = {
 	ProfileType: gql`

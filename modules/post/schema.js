@@ -1,5 +1,5 @@
 const { gql, AuthenticationError } = require('apollo-server');
-const { validatePostInput, validateUpdPostIntput } = require('../../utils/post/validation');
+const { validatePostInput, validateUpdPostIntput } = require('./validation');
 const {
 	findPost,
 	findPosts,
@@ -7,9 +7,9 @@ const {
 	dailyPostsWithTags,
 	searchUserPosts,
 	findUserPosts
-} = require('../../utils/post/queries');
-const { buildPost, updatePost, deletePost } = require('../../utils/post/actions');
-const { getDatesFromString, validateSearchInput } = require('../../utils/general');
+} = require('./queries');
+const { buildPost, updatePost, deletePost } = require('./actions');
+const { getDatesFromString, validateSearchInput } = require('../utils');
 
 module.exports = {
 	PostType: gql`

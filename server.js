@@ -3,11 +3,11 @@ const express = require('express');
 const helmet = require('helmet');
 const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
-const schema = require('./schema/schema');
+const schema = require('./schema');
 const models = require('./models');
-const Loaders = require('./utils/DataLoaders');
+const Loaders = require('./modules/loaders');
 const connectDB = require('./config/db');
-const { AuthUser } = require('./utils/user/auth');
+const { AuthUser } = require('./modules/user/auth');
 const RateLimit = require('express-rate-limit');
 
 const startServer = async () => {
@@ -46,7 +46,7 @@ const startServer = async () => {
 
 	const limiter = new RateLimit({
 		windowMs: 15 * 60 * 1000, // 15 minutes
-		max: 100,
+		max: 100
 	});
 
 	app.use(limiter);

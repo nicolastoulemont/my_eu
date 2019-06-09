@@ -1,6 +1,6 @@
 const { gql, AuthenticationError } = require('apollo-server');
-const { ValidateAddReport } = require('../../utils/report/validation');
-const { buildReport, deleteReport } = require('../../utils/report/actions');
+const { ValidateAddReport } = require('./validation');
+const { buildReport, deleteReport } = require('./actions');
 const {
 	findReport,
 	findReports,
@@ -9,7 +9,7 @@ const {
 	findCommentReports,
 	findPollReports,
 	findProfileReports
-} = require('../../utils/report/queries');
+} = require('./queries');
 
 module.exports = {
 	ReportType: gql`

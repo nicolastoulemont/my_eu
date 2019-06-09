@@ -1,18 +1,13 @@
 const { gql, AuthenticationError } = require('apollo-server');
-const { validateCommentInput } = require('../../utils/comment/validation');
+const { validateCommentInput } = require('./validation');
 const {
 	buildComment,
 	updateComment,
 	pinComment,
 	moderateComment,
 	moderateAndDelete
-} = require('../../utils/comment/actions');
-const {
-	findComment,
-	findComments,
-	findEventComments,
-	findUserComments
-} = require('../../utils/comment/queries');
+} = require('./actions');
+const { findComment, findComments, findEventComments, findUserComments } = require('./queries');
 
 module.exports = {
 	CommentType: gql`

@@ -1,6 +1,6 @@
 const Validator = require('validator');
 const bcrypt = require('bcrypt');
-const { isEmpty, ValidStringRegExp } = require('../general');
+const { isEmpty, ValidStringRegExp } = require('../utils');
 const { User } = require('../../models');
 
 const validateRegInput = async data => {

@@ -1,5 +1,5 @@
 const { Registration, EventItem } = require('../../models/');
-const { isEmpty } = require('../general');
+const { isEmpty } = require('../utils');
 const dayjs = require('dayjs');
 
 const ValidateAddRegistration = async data => {

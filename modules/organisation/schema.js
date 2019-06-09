@@ -1,10 +1,6 @@
 const { gql, AuthenticationError } = require('apollo-server');
-const { validateOrgInput, validateUpdOrgIntput } = require('../../utils/organisation/validation');
-const {
-	buildOrganisation,
-	updateOrganisation,
-	deleteOrganisation
-} = require('../../utils/organisation/actions');
+const { validateOrgInput, validateUpdOrgIntput } = require('./validation');
+const { buildOrganisation, updateOrganisation, deleteOrganisation } = require('./actions');
 
 module.exports = {
 	OrganisationType: gql`

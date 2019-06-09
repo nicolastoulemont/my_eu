@@ -1,6 +1,6 @@
 const { gql, AuthenticationError } = require('apollo-server');
-const { ValidateAddRegistration } = require('../../utils/registration/validation');
-const { buildRegistration, deleteRegistration } = require('../../utils/registration/actions');
+const { ValidateAddRegistration } = require('./validation');
+const { buildRegistration, deleteRegistration } = require('./actions');
 const {
 	findRegistration,
 	findRegistrations,
@@ -8,8 +8,8 @@ const {
 	findUserFutureRegistrations,
 	findUserPastRegistrations,
 	findEventRegistrations
-} = require('../../utils/registration/queries');
-const { getDatesFromString, validateSearchInput } = require('../../utils/general');
+} = require('./queries');
+const { getDatesFromString, validateSearchInput } = require('../utils');
 
 module.exports = {
 	RegistrationType: gql`
