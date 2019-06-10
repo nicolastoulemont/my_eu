@@ -65,7 +65,7 @@ const UserNav = ({ client }) => {
 							<li className="nav-item pr-4 mt-1">
 								<Link
 									className="nav-link"
-									to={`/home/activities/${user.id}`}
+									to={`/home/activities/${dayjs().format('YYYY-MM-DD')}`}
 									data-togggle="tooltip"
 									data-placement="bottom"
 									title="Monitor your events and registrations in depth"
