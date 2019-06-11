@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { useStateValue } from '../../contexts/InitialState';
 import { tagsList } from '../TagsList';
 import classNames from 'classnames';
+import ActivitiesSearchOptions from './ActivitiesSearchOptions';
+import TypeSearchOptions from './TypeSearchOption';
+import FreeEventSearchOption from './FreeEventSearchOption';
+import TagsSearchOption from './TagsSearchOption';
 
 const FeedSearch = ({
 	date,
@@ -237,177 +241,33 @@ const FeedSearch = ({
 				<div className={classNames('row justify-content-end pr-2', { 'mb-2': advancedSearch })}>
 					<div className="d-flex flex-row-reverse pr-2">
 						{path.includes('news') || path.includes('events') ? (
-							<Fragment>
-								<div className="dropdown">
-									<Link
-										to="#"
-										className="ml-2"
-										data-toggle="dropdown"
-										role="button"
-										aria-haspopup="true"
-										aria-expanded="false"
-										data-togggle="tooltip"
-										data-placement="bottom"
-										title="Select by Type"
-									>
-										<span className={classNames('m-0', { 'text-blue': type !== '' })}>
-											<small>
-												<i className="fas fa-university mx-2 mt-2" />
-												Filter by Type
-											</small>
-										</span>
-									</Link>
-									<ul className="dropdown-menu dropdown-menu-right">
-										<li>
-											<Link
-												className={classNames('dropdown-item py-0 my-0', {
-													'text-blue': type === ''
-												})}
-												to="#"
-												onClick={setTypeToNone}
-											>
-												<small>None</small>
-											</Link>
-										</li>
-										<li>
-											<Link
-												className={classNames('dropdown-item py-0 my-0', {
-													'text-blue': type === 'institutional'
-												})}
-												to="#"
-												onClick={setTypeToInstitutional}
-											>
-												<small>Institutional</small>
-											</Link>
-										</li>
-										<li>
-											<Link
-												className={classNames('dropdown-item py-0 my-0', {
-													'text-blue': type === 'political party'
-												})}
-												to="#"
-												onClick={setTypeTopoliticalParty}
-											>
-												<small>Political Party</small>
-											</Link>
-										</li>
-									</ul>
-								</div>
-							</Fragment>
+							<TypeSearchOptions
+								type={type}
+								setTypeToNone={setTypeToNone}
+								setTypeToInstitutional={setTypeToInstitutional}
+								setTypeTopoliticalParty={setTypeTopoliticalParty}
+							/>
 						) : null}
 
-						{path.includes('events') ? (
-							<Link
-								to="#"
-								className="ml-2"
-								data-togggle="tooltip"
-								data-placement="bottom"
-								title="Only show free events"
-								onClick={handlePrice}
-							>
-								{' '}
-								<span className={classNames('m-0', { 'text-blue': price === 0 })}>
-									<small>
-										<i className="fab fa-creative-commons-nc-eu mx-2 mt-2" />
-										Free Events Only
-									</small>
-								</span>
-							</Link>
-						) : null}
+						{path.includes('events') && (
+							<FreeEventSearchOption handlePrice={handlePrice} price={price} />
+						)}
 
-						{!path.includes('activities') ? (
-							<Fragment>
-								<div className="dropdown">
-									<Link
-										to="#"
-										className="ml-2"
-										data-toggle="dropdown"
-										role="button"
-										aria-haspopup="true"
-										aria-expanded="false"
-										data-togggle="tooltip"
-										data-placement="bottom"
-										title="Apply Filters"
-									>
-										<span className={classNames('m-0', { 'text-blue': tags.length !== 0 })}>
-											<small>
-												<i className="fas fa-tags mx-2 mt-2" />
-												Filter by Tags
-											</small>
-										</span>
-									</Link>
-									<ul className="dropdown-menu scrollable-menu">
-										{tagsPool.sort().map(tag => (
-											<li
-												key={Math.random()
-													.toString(36)
-													.substring(2, 7)}
-											>
-												<Link
-													className="dropdown-item py-0 my-0"
-													to="#"
-													onClick={e => addTag(e, tag)}
-												>
-													<small>{tag}</small>
-												</Link>
-											</li>
-										))}
-									</ul>
-								</div>
-								{tags.length !== 0 ? (
-									<div>
-										{tags.sort().map(tag => (
-											<small
-												key={Math.random()
-													.toString(36)
-													.substring(2, 7)}
-											>
-												<Link to="#" onClick={e => deleteTag(e, tag)}>
-													<span className="badge tag actiontags mt-1">
-														{tag} <i className="fas fa-times ml-1" />
-													</span>
-												</Link>
-											</small>
-										))}
-									</div>
-								) : null}
-							</Fragment>
-						) : null}
+						{!path.includes('activities') && (
+							<TagsSearchOption
+								tags={tags}
+								tagsPool={tagsPool}
+								addTag={addTag}
+								deleteTag={deleteTag}
+							/>
+						)}
 
-						{path.includes('activities') ? (
-							<Link
-								to="#"
-								className="ml-2"
-								data-togggle="tooltip"
-								data-placement="bottom"
-								title="Show your events"
-								onClick={e => setDisplayRegistrations(false)}
-							>
-								<span className={classNames('m-0', { 'text-blue': !displayRegistrations })}>
-									<small>
-										<i className="far fa-calendar mx-2 mt-2" />
-										Show your events
-									</small>
-								</span>
-							</Link>
-						) : null}
-						{path.includes('activities') ? (
-							<Link
-								to="#"
-								className="ml-2"
-								data-togggle="tooltip"
-								data-placement="bottom"
-								title="Show your registrations"
-								onClick={e => setDisplayRegistrations(true)}
-							>
-								<span className={classNames('m-0', { 'text-blue': displayRegistrations })}>
-									<small>
-										<i className="fas fa-bookmark mx-2 mt-2" />
-										Show your registrations
-									</small>
-								</span>
-							</Link>
-						) : null}
+						{path.includes('activities') && (
+							<ActivitiesSearchOptions
+								setDisplayRegistrations={setDisplayRegistrations}
+								displayRegistrations={displayRegistrations}
+							/>
+						)}
 					</div>
 				</div>
 			)}
